@@ -1,0 +1,138 @@
+create database kitaplık ----------------- //kitaplık veritabanı oluşturulur
+
+// tablo oluşturulur
+
+create table ogr2(
+OgrenciADI varchar(40)
+)   
+
+
+
+drop table ogr2-----------------//tablo silinir
+
+alter table ogr drop column BaslamaTarihi -----------------//satır silinir
+
+truncate table ogr2------------//tablonun içeriği silinir
+
+select OgrNumara,OgrAd from ogr--------------// tablonun istediğimiz bölümleri seçildi
+
+select * from ogr-------------//tüm tablo seçilir
+
+alter table kitap alter column KitapTarih date-----------------//veritipi değiştirme
+
+select * from kitap where KitapAd='palto' ------------//kitap adı palto olan satır seçilir
+
+select * from kitap where KitapSayfa>150-----------------//kitap sayfası 150 den büyük olanlar seçilir
+
+select * from kitap where KitapYayınEvi='yıldız' and KitapFiyat>8 -----------------//'and' iki seçim birarada yapılabilir
+
+select * from kitap where KitapSayfa>100 or KitapFiyat>8-----------------//'or' iki şarttan birisi yeterli
+
+select * from kitap where KitapSayfa in(200,300,220)-----------------//'in' komutuyla parantez içindeki değerlerin olduğu satırlar seçilir
+
+select * from kitap where KitapAd like '%a%'-----------------// 'like' komutuyla kitap adında 'a' olan kitaplar seçilir
+
+select * from kitap where KitapAd like '%a%' and KitapSayfa in (200,300,210,220) and KitapFiyat>10 -----------------// 3 şart birarada olmalı
+
+select * from kitap where KitapAd like 'a%t'---------------------------//kitap adı a ile başlayıp t ile bitenler
+
+select * from kitap where KitapAd like 'a%nez%'-----------//a ile başlayıp içinde'nez' geçen kitap
+
+select * from kitap where KitapAd like 'a_ _ _d%'-------------// baş harfi a 2,3,4. harfi farketmez 5.harfi d olan kitap
+
+select * from kitap where KitapAd like '[abc]%'-------------//ilk harfi a yada b yada c olan kitap
+
+select * from kitap where KitapAd like '%[ai]%'------------------//isminin içinde a ya da i olan kitap
+
+select * from kitap where KitapAd like '[a-k]%'-------------// baş harfi a ve k arasındaki harflerden biri olan kitap
+
+select * from kitap where KitapAd like '[^a]%'--------------------//baş harfi 'a' olmayan kitaplar
+
+select * from kitap where KitapAd like 'b%' -----------------// 'b%' ile kitap adı 'b' ile başlayanlar seçilir
+
+insert into kitap values(7,'insan ne ile yaşar','tolstoy',110,5,'2015-08-12','mavi')  ------------------------//tabloya yeni kayıt ekleme
+
+insert into kitap (KitapNo,KitapAd,KitapSayfa,KitapTarih,KitapYayınEvi)
+values(8,'suç ve ceza',1250,'2015-07-19','merkür') ---------------- ------------------------//tablonun istediğimiz kısımlarına ekleme yapma
+
+update kitap set KitapYazar='Dostoyevski', KitapFiyat=22 where KitapAd='suç ve ceza'-----------------// tabloda istedeğimiz yerleri güncelleme değiştirme
+
+update kitap set KitapFiyat=5 where KitapFiyat<8 ---------------------------------//tablodaki fiyatı 8 den küçük olanların hepsini 5 yapıyoruz
+
+delete from table --------------------------------// tablonun içeriğini siler
+
+delete from kitap where KitapNo=8 -----------------------//tablodaki istediğimiz satırı sildik
+
+delete from kitap where KitapSayfa>880 or KitapFiyatı=11 -------------------------//şartı sağlayan iki kaydı silebiliriz
+
+select distinct KitapAd from Kitap --------------------// tablodaki aynı verileri tek bir kez gösterir
+
+select distinct KitapYayınEvi from Kitap --------------------// 'distinct' komutuyla kaç tane farklı yayınevi olduğunu görebiliyoruz
+
+select * from kitap order by KitapAd----------------------//'order by' komutuyla alfabetik sıralama yapılır
+
+select * from kitap order by KitapAd asc----------------------//a dan başlayıp sıralar
+
+select * from kitap order by KitapAd desc----------------------// z den başlayıp sıralar
+
+select KitapFiyat as 'Kitap ücreti' from kitap------//'as'komutu ile kitapfiyatı adını kitap ücreti olarak yazıp tablodan kitap ücretlerini art arda gösterir
+
+select KitapFiyat as 'Kitap ücreti',KitapAd as 'Kitap isim' from kitap----------------------//'as' ile kullanıcıya isimleri değiştirilerek istenen içeriği gösterilir
+
+select KitapAd,KitapYazar,KitapFiyat,KitapFiyat+2 as 'Yeni fiyat' from kitap---------------------//kitap fiyatları aritmetik işlemle güncellendi
+
+select 20+4 as'Toplam', 20-4 as 'Çıkarma', 20*4 as 'Çarpma', 20/4 as 'Bölüm'----------------------// aritmetik işlemler
+
+select KitapAd + ' - ' +KitapYazar as 'Kitaplık' from kitap----------------	------//tablodaki iki veriyi yanyana yazar.Örnek:çalıkuşu-reşat nuri
+
+select Substring(KitapAd,1,5) from kitap----------------------//kitap adını 1. karakterden 5. ye kadar alır.Örnek:çalıkuşu->çalık
+
+select Left(KitapAd,7) from kitap----------------------//kitabın ilk karakterinden 7. karakterine kadar adını alır.Örnek:çalıkuşu->çalıkuş 
+
+select Right(KitapAd,7) from kitap----------------------//sağdan itibaren kitabın son karakterinden 7. karakterine kadar adını alır.Örnek:çalıkuşu->alıkuşu
+
+select upper(KitapAd) from kitap----------------------//hepsini büyük harfle yazar.Örnek:çalıkuşu->ÇALIKUŞU
+
+select lower(KitapAd) from kitap----------------------// hepsini küçük harfle yazar.Örnek:ÇALIKUŞU->çalıkuşu
+
+select KitapAd,len (Kitapad)from kitap----------------------// kitap adının karakter sayısını bulur.
+
+select KitapAd,len (Kitapad)from kitap where len(kitapad) >=15----------------------//kitap adının karakter sayısını bulur ve 15 den büyük olanı gösterir.
+
+select KitapAd,replace(kitapyazar,'reşat nuri','r.nuri') from kitap ----------------------//yazar adı 'replace' ile değiştirilip yazıldı sadece görüntü olarak verir.tablo aynıdır.
+
+select reverse(kitapad)from kitap ----------------------//tersten yazdırma 
+
+select abs(kitapfiyat) from kitap----------------------//mutlak değeri alınıp yazılır
+
+select ceiling(kitapfiyat) from kitap----------------------//ondalık sayıları üste yuvarlar. 5,3 ---6
+
+select floor(kitapfiyat) from kitap----------------------//ondalık sayıları aşağıya yuvarlar. 5,3 ---5
+
+select round(kitapfiyat,1) from kitap----------------------//ondalık sayıların duyarlılığını arttırır.12,34---12,3 //12,234 ---12,2
+
+select power(2,5)----------------------//2 nin 5. kuvvetini alır
+
+select sqrt(25)----------------------//karekökünü alır
+
+select sum (kitapfiyat) from kitap----------------------//kitap fiyatlarını toplatır
+
+select sum (kitapfiyat) from kitap where kitapfiyat>10 ----------------------//kitap fiyatı 10 dan büyükleri toplatır
+
+select avg(kitapfiyat) from kitap ----------------------//kitap fiyatlarının ortalamasını aldırır.
+
+select max(kitapfiyat) from kitap----------------------//max kitap fiyatı
+
+select min(kitapfiyat) from kitap ----------------------//min kitap fiyatı
+
+select count(kitapad) from kitap ----------------------//kaç tane kitap adı olduğunu bulur
+
+----------------------//
+
+
+
+
+
+
+
+
