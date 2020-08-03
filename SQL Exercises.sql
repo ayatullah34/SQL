@@ -2,9 +2,9 @@ select p.ProductName,P.UnitsInStock*p.UnitPrice as total FROM Products p;
 
 select p.ProductName +'-' +p.QuantityPerUnit from products p;
 
-select 'engin demir' as eðitmen
+select 'engin demir' as eÃ°itmen
 
-select 9*8 as sonuç
+select 9*8 as sonuÃ§
 
 select * from products where UnitsInStock=0 and UnitsOnOrder>0
 
@@ -32,7 +32,7 @@ select * from Products where UnitPrice between 10 and 20 order by UnitPrice
 
 select * from Products where CategoryID in(1,2)
 
-select count(*) as ürünsayýsý from Products
+select count(*) as Ã¼rÃ¼nsayÃ½sÃ½ from Products
 
 select count(productname) from Products  
 
@@ -48,7 +48,7 @@ select sum(UnitPrice) from Products
 
 select avg(UnitPrice) from Products 
 
-select sum(UnitPrice*Quantity) as kazanç from [Order Details] 
+select sum(UnitPrice*Quantity) as kazanÃ§ from [Order Details] 
 
 select RAND() 
 
@@ -137,22 +137,22 @@ on p.ProductID=od.ProductID
 where od.ProductID is null
 
 
-select * from Customers c inner join Orders o   --830 sonuç
+select * from Customers c inner join Orders o   --830 sonuÃ§
 on c.CustomerID=o.CustomerID
 
 
-select * from Customers c left join Orders o  --832 satýþ yapýlmayanlarda dahil id leri eþit olmayanlarda eklendi
+select * from Customers c left join Orders o  --832 satÃ½Ã¾ yapÃ½lmayanlarda dahil id leri eÃ¾it olmayanlarda eklendi
 on c.CustomerID=o.CustomerID
 
 
-select * from Customers c left join Orders o  --satýþ yapýlmayan müþteri
+select * from Customers c left join Orders o  --satÃ½Ã¾ yapÃ½lmayan mÃ¼Ã¾teri
 on c.CustomerID=o.CustomerID
 where o.CustomerID is null
---soldaki tabloda olup saðdaki tabloda olmayanlarý da getir (left join)
+--soldaki tabloda olup saÃ°daki tabloda olmayanlarÃ½ da getir (left join)
 
 
 
-select * from   Orders o right join Customers c  --saðdaki tabloda olup soldaki tabloda olmayanlarý da getir (right join)
+select * from   Orders o right join Customers c  --saÃ°daki tabloda olup soldaki tabloda olmayanlarÃ½ da getir (right join)
 on c.CustomerID=o.CustomerID
 where o.CustomerID is null
 
@@ -162,33 +162,33 @@ on c.CustomerID=o.CustomerID
 where o.CustomerID is null
 
 
-select * from   Orders o full join Customers c  --hem left hem de right join sorgularýnýda getirir bütün veriler dahil eþleþme þartý yok
+select * from   Orders o full join Customers c  --hem left hem de right join sorgularÃ½nÃ½da getirir bÃ¼tÃ¼n veriler dahil eÃ¾leÃ¾me Ã¾artÃ½ yok
 on c.CustomerID=o.CustomerID
 
 
-select e.LastName,e.FirstName from Employees e left join Orders o --WORKSHOP 2 satýþ yapamayan eleman var mý varsa kimler?
+select e.LastName,e.FirstName from Employees e left join Orders o --WORKSHOP 2 satÃ½Ã¾ yapamayan eleman var mÃ½ varsa kimler?
 on e.EmployeeID=o.EmployeeID
 where o.EmployeeID is null
 
 
-select p.ProductName,COUNT(*) as adet from Products p inner join [Order Details] od --WORKSHOP 3 hangi üründen kaç tane satmýþýz?
+select p.ProductName,COUNT(*) as adet from Products p inner join [Order Details] od --WORKSHOP 3 hangi Ã¼rÃ¼nden kaÃ§ tane satmÃ½Ã¾Ã½z?
 on p.ProductID=od.ProductID group by ProductName order by p.ProductName
 
 
-select p.ProductName,COUNT(*) as adet from Products p inner join [Order Details] od --WORKSHOP 3 kampanyalý olarak kaç tane satmýþýz?
+select p.ProductName,COUNT(*) as adet from Products p inner join [Order Details] od --WORKSHOP 3 kampanyalÃ½ olarak kaÃ§ tane satmÃ½Ã¾Ã½z?
 on p.ProductID=od.ProductID 
 where od.Discount>0
 group by ProductName order by p.ProductName
 
 
-select c.CategoryName,COUNT(*) as adet from Products p inner join Categories c --WORKSHOP 4 hangi kategoriden kaç tane satmýþýz?
+select c.CategoryName,COUNT(*) as adet from Products p inner join Categories c --WORKSHOP 4 hangi kategoriden kaÃ§ tane satmÃ½Ã¾Ã½z?
 on p.CategoryID=c.CategoryID
 inner join [Order Details] od
 on p.ProductID=od.ProductID
 group by c.CategoryName order by c.CategoryName
 
 
-select e2.FirstName+ ' '+e2.LastName as Personel,e1.FirstName+ ' '+e1.LastName as Üstü from Employees e1 right join Employees e2 --WORKSHOP 5 çalýþanlarýn sorumlu olduklarý(repost to) üstlerini bulunuz
+select e2.FirstName+ ' '+e2.LastName as Personel,e1.FirstName+ ' '+e1.LastName as ÃœstÃ¼ from Employees e1 right join Employees e2 --WORKSHOP 5 Ã§alÃ½Ã¾anlarÃ½n sorumlu olduklarÃ½(repost to) Ã¼stlerini bulunuz
 on e1.EmployeeID=e2.ReportsTo
 
 
@@ -196,10 +196,10 @@ insert into Categories(CategoryName,Description)
 values('test category','test category Description')
 
 
-insert into [Order Details] values(10248,12,12,10,0) --kolon belirtmezsek her kolona deðer vermeliyiz
+insert into [Order Details] values(10248,12,12,10,0) --kolon belirtmezsek her kolona deÃ°er vermeliyiz
 
 
---update Categories set CategoryName=' ' --tüm kolonu boþluk yapar
+--update Categories set CategoryName=' ' --tÃ¼m kolonu boÃ¾luk yapar
 
 
 update Categories set CategoryName='test category 2' where CategoryID=9
@@ -214,7 +214,7 @@ delete from Categories where CategoryID=9
 select * from CustomersWork
 
 
-insert into CustomersWork(CustomerID,CompanyName,ContactName) --Customer tablosundan veri çekmeye yarýyo yeni tablomuza
+insert into CustomersWork(CustomerID,CompanyName,ContactName) --Customer tablosundan veri Ã§ekmeye yarÃ½yo yeni tablomuza
 select CustomerID,CompanyName,ContactName from Customers
 
 
@@ -240,5 +240,5 @@ where CustomersWork.CompanyName like'%test%'
 
 union --iki tabloyu alt alta getirir
 select CustomerID,CompanyName,ContactName from Customers
-union -- kolon sayýlarý ayný olmalý ayný varsa bir kere getirir union all dersek hepsi gelir 
+union -- kolon sayÃ½larÃ½ aynÃ½ olmalÃ½ aynÃ½ varsa bir kere getirir union all dersek hepsi gelir 
 select * from CustomersWork
